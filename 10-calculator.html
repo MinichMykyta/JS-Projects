@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head title="Calculator">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+      body {
+          background-color: black;
+      }
+
+      .calculation {
+          color: white;
+          font-size: 50px;
+          font-weight: 400;
+          font-family: 'Roboto', sans-serif;
+          margin: 0;
+      }
+
+      .grey-button {
+          background-color: #333333;
+          color: white;
+          height: 60px;
+          width: 60px;
+          border-radius: 50px;
+          border: none;
+          margin: 0 5px 0 0;
+          font-size: 26px;
+          cursor: pointer;
+      }
+
+      .clear-button {
+          font-size: 17px;
+      }
+
+      .orange-button {
+          background-color: orange;
+          color: white;
+          height: 60px;
+          width: 60px;
+          border-radius: 50px;
+          border: none;
+          font-size: 26px;
+          cursor: pointer;
+      }
+  </style>
+</head>
+<body>
+
+<!-- Create an element to display the calculation. -->
+<p class="calculation js-calculation"></p>
+
+<p>
+  <button class="grey-button" onclick="
+        updateCalculation('1');
+      ">1</button>
+
+  <button class="grey-button" onclick="
+        updateCalculation('2');
+      ">2</button>
+
+  <button class="grey-button" onclick="
+        updateCalculation('3');
+      ">3</button>
+
+  <button class="orange-button" onclick="
+        updateCalculation(' + ');
+      ">+</button>
+</p>
+
+<p>
+  <button class="grey-button" onclick="
+        updateCalculation('4');
+      ">4</button>
+
+  <button class="grey-button" onclick="
+        updateCalculation('5');
+      ">5</button>
+
+  <button class="grey-button" onclick="
+        updateCalculation('6');
+      ">6</button>
+
+  <button class="orange-button" onclick="
+        updateCalculation(' - ');
+      ">-</button>
+</p>
+
+<p>
+  <button class="grey-button" onclick="
+        updateCalculation('7');
+      ">7</button>
+
+  <button class="grey-button" onclick="
+        updateCalculation('8');
+      ">8</button>
+
+  <button class="grey-button" onclick="
+        updateCalculation('9');
+      ">9</button>
+
+  <button class="orange-button" onclick="
+        updateCalculation(' * ');
+      ">*</button>
+</p>
+
+<p>
+  <button class="grey-button" onclick="
+        updateCalculation('0');
+      ">0</button>
+
+  <button class="grey-button" onclick="
+        updateCalculation('.');
+      ">.</button>
+
+  <button class="grey-button" onclick="
+        calculation = eval(calculation);
+
+        // Display the calculation on the page
+        // instead of console.log
+        displayCalculation();
+
+        localStorage.setItem('calculation', calculation);
+      ">=</button>
+
+  <button class="orange-button" onclick="
+        updateCalculation(' / ');
+      ">/</button>
+</p>
+
+<p>
+  <button class="grey-button clear-button" onclick="
+        calculation = '';
+
+        // Display the calculation on the page
+        // instead of console.log
+        displayCalculation();
+
+        localStorage.setItem('calculation', calculation);
+      ">Clear</button>
+</p>
+
+<script>
+    let calculation = localStorage.getItem('calculation') || '';
+
+    // Display the calculation when the page first loads.
+    displayCalculation();
+
+    function updateCalculation(value) {
+        calculation += value;
+
+        // Display the calculation on the page
+        // instead of console.log
+        displayCalculation();
+
+        localStorage.setItem('calculation', calculation);
+    }
+
+    function displayCalculation() {
+        document.querySelector('.js-calculation')
+            .innerHTML = calculation;
+    }
+</script>
+</body>
+</html>
